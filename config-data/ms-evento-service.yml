@@ -11,8 +11,8 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show_sql: true
-    datasource:
-      driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/ms_evento
-      username: root
-      password:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ms_evento
+    username: root
+    password:
