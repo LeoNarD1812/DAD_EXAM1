@@ -8,5 +8,5 @@ public class EventoDto {
     private String name;
     private String description;
     private String code;
-    private TipoEventoDto category;
+    private TipoEventoDto tipo;
 }

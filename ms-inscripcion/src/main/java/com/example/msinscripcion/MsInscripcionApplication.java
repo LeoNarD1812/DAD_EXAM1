@@ -18,9 +18,9 @@ public class MsInscripcionApplication {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info()
-                .title("OPEN API MICROSERVICIO CLIENTE")
+                .title("OPEN API MICROSERVICIO INSCRIPCION ")
                 .version("0.0.1")
-                .description("servicios web cliente")
+                .description("servicios web inscripcion")
                 .termsOfService("http:// swagger.io/terms")
                 .license(new License().name("Apache 2.0").url("http://springdoc.org"))
         );
