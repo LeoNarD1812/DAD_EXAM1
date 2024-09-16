@@ -9,6 +9,12 @@ eureka:
   instance:
     hostname: localhost
 
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
 
 spring:
   cloud:
@@ -25,3 +31,7 @@ spring:
           uri: lb://ms-cliente-service
           predicates:
             - Path=/cliente/**
+        - id: ms-inscripcion-service
+          uri: lb://ms-inscripcion-service
+          predicates:
+            - Path=/inscripcion/**
