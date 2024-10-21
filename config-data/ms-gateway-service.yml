@@ -29,11 +29,9 @@ spring:
           uri: lb://ms-evento-service
           predicates:
             - Path=/evento/**
-        - id: ms-cliente-service
-          uri: lb://ms-cliente-service
+          filters:
+            - AuthFilter
+        - id: ms-auth-service
+          uri: lb://ms-auth-service
           predicates:
-            - Path=/cliente/**
-        - id: ms-inscripcion-service
-          uri: lb://ms-inscripcion-service
-          predicates:
-            - Path=/inscripcion/**
+            - Path=/auth/**
