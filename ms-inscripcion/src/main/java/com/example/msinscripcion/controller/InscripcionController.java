@@ -1,8 +1,16 @@
 package com.example.msinscripcion.controller;
 
+import com.example.msinscripcion.dto.ClientDto;
+import com.example.msinscripcion.dto.ErrorResponseDto;
+import com.example.msinscripcion.dto.EventoDto;
 import com.example.msinscripcion.entity.Inscripcion;
+import com.example.msinscripcion.entity.InscripcionDetalle;
+import com.example.msinscripcion.feign.ClientFeign;
+import com.example.msinscripcion.feign.EventoFeign;
+import com.example.msinscripcion.repository.InscripcionRepository;
 import com.example.msinscripcion.service.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +22,10 @@ import java.util.Optional;
 public class InscripcionController {
     @Autowired
     private InscripcionService inscripcionService;
+    @Autowired
+    private ClientFeign clientFeign;
+    @Autowired
+    private EventoFeign eventoFeign;
 
     @GetMapping
     public ResponseEntity<List<Inscripcion>> getAll() {
@@ -26,8 +38,24 @@ public class InscripcionController {
     }
 
     @PostMapping
-    public ResponseEntity<Inscripcion> create(@RequestBody Inscripcion inscripcion) {
-        return ResponseEntity.ok(inscripcionService.save(inscripcion));
+
+    public ResponseEntity<?> create(@RequestBody Inscripcion inscripcion) {
+        ClientDto clientDto = clientFeign.getById(inscripcion.getClientId()).getBody();
+
+        if (clientDto == null || clientDto.getId() == null) {
+            String errorMessage = "Error: Cliente no encontrado.";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponseDto(errorMessage));
+        }
+        for (InscripcionDetalle orderDetail : inscripcion.getInscripcionDetalles()) {
+            EventoDto eventoDto = eventoFeign.getById(orderDetail.getEventoId()).getBody();
+
+            if (eventoDto == null || eventoDto.getId() == null) {
+                String errorMessage = "Error: producto no encontrado.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponseDto(errorMessage));
+            }
+        }
+        Inscripcion newOrder = inscripcionService.save(inscripcion);
+        return ResponseEntity.ok(newOrder);
     }
 
     @PutMapping("/{id}")
