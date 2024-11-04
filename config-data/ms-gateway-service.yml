@@ -28,7 +28,7 @@ spring:
         - id: ms-evento-service
           uri: lb://ms-evento-service
           predicates:
-            - Path=/evento/**
+            - Path=/event/,/categoria/**
           filters:
             - AuthFilter
         - id: ms-inscripcion-service
