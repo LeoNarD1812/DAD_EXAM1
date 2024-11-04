@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EventoServiceimpl implements EventoService {
+public class EventoServiceImpl implements EventoService {
     @Autowired
     private EventoRepository eventoRepository;
 
