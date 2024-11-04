@@ -42,8 +42,8 @@ public class TransaccionServiceImpl implements TransaccionService {
         /*transaccion.get().getTransaccionDetails().stream().forEach(transaccionDetail -> {
             transaccionDetail.setProductDto(productFeign.getById(transaccionDetail.getProductId()).getBody());
         });*/
-        transaccion.get().getTransaccionDetalles().forEach(transaccionDetail -> {
-            transaccionDetail.setInscripcionDto(inscripcionFeign.getById(transaccionDetail.getInscripcionId()).getBody());
+        transaccion.get().getTransaccionDetalles().forEach(transaccionDetalle -> {
+            transaccionDetalle.setInscripcionDto(inscripcionFeign.getById(transaccionDetalle.getInscripcionId()).getBody());
         });
         return transaccion;
     }

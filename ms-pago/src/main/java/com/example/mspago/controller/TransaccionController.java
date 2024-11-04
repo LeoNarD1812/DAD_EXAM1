@@ -2,6 +2,7 @@ package com.example.mspago.controller;
 
 import com.example.mspago.dto.ClientDto;
 import com.example.mspago.dto.ErrorResponseDto;
+import com.example.mspago.dto.InscripcionDetalleDto;
 import com.example.mspago.dto.InscripcionDto;
 import com.example.mspago.entity.Transaccion;
 import com.example.mspago.entity.TransaccionDetalle;
@@ -42,11 +43,11 @@ public class TransaccionController {
             String errorMessage = "Error: Cliente no encontrado.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponseDto(errorMessage));
         }
-        for (TransaccionDetalle transaccionDetail : transaccion.getTransaccionDetalles()) {
-            InscripcionDto productDto = inscripcionFeign.getById(transaccionDetail.getInscripcionId()).getBody();
+        for (TransaccionDetalle transaccionDetalle : transaccion.getTransaccionDetalles()) {
+            InscripcionDto inscripcionDto = inscripcionFeign.getById(transaccionDetalle.getInscripcionId()).getBody();
 
-            if (productDto == null || productDto.getId() == null) {
-                String errorMessage = "Error: producto no encontrado.";
+            if (inscripcionDto == null || inscripcionDto.getId() == null) {
+                String errorMessage = "Error: Inscripcion no encontrado.";
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponseDto(errorMessage));
             }
         }

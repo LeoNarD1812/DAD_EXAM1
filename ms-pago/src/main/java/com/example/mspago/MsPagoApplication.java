@@ -11,9 +11,7 @@ import org.springframework.context.annotation.Bean;
 @EnableFeignClients
 @SpringBootApplication
 public class MsPagoApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MsPagoApplication.class, args);
-    }
+    public static void main(String[] args) {SpringApplication.run(MsPagoApplication.class, args);    }
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info()

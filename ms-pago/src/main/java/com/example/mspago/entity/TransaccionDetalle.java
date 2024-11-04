@@ -7,12 +7,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class TransaccionDetalle {
+public class    TransaccionDetalle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer InscripcionId;
     @Transient
     private InscripcionDto inscripcionDto;
-
+    public TransaccionDetalle() {
+    }
 }
