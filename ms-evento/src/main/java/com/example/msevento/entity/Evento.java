@@ -16,7 +16,6 @@ public class Evento {
     private String name;
     private String description;
     private String type;
-    private String date;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

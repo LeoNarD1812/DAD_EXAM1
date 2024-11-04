@@ -1,6 +1,6 @@
 package com.example.msevento.controller;
 
-import com.example.msevento.Service.CategoriaService;
+import com.example.msevento.service.CategoriaService;
 import com.example.msevento.entity.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

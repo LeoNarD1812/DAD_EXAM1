@@ -1,6 +1,6 @@
-package com.example.msevento.Service.impl;
+package com.example.msevento.service.impl;
 
-import com.example.msevento.Service.EventoService;
+import com.example.msevento.service.EventoService;
 import com.example.msevento.entity.Evento;
 import com.example.msevento.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

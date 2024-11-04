@@ -1,4 +1,4 @@
-package com.example.msevento.Service;
+package com.example.msevento.service;
 
 import com.example.msevento.entity.Categoria;
 
