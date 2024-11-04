@@ -1,6 +1,6 @@
-package com.example.msinscripcion.feign;
+package com.example.mspago.feign;
 
-import com.example.msinscripcion.dto.ClientDto;
+import com.example.mspago.dto.ClientDto;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
