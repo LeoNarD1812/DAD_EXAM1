@@ -2,7 +2,7 @@ package com.example.msinscripcion.service.impl;
 
 import com.example.msinscripcion.entity.Inscripcion;
 import com.example.msinscripcion.feign.ClientFeign;
-import com.example.msinscripcion.feign.EventoFeign;
+import com.example.msinscripcion.feign.EventFeign;
 import com.example.msinscripcion.repository.InscripcionRepository;
 import com.example.msinscripcion.service.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     private InscripcionRepository inscripcionRepository;
 
     @Autowired
-    private EventoFeign eventoFeign;
+    private EventFeign eventFeign;
     @Autowired
     private ClientFeign clientFeign;
 
@@ -43,7 +43,7 @@ public class InscripcionServiceImpl implements InscripcionService {
             inscripcionDetail.setProductDto(productFeign.getById(inscripcionDetail.getProductId()).getBody());
         });*/
         inscripcion.get().getInscripcionDetalles().forEach(inscripcionDetail -> {
-            inscripcionDetail.setEventoDto(eventoFeign.getById(inscripcionDetail.getEventoId()).getBody());
+            inscripcionDetail.setEventDto(eventFeign.getById(inscripcionDetail.getEventId()).getBody());
         });
         return inscripcion;
     }

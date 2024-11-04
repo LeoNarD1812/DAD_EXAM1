@@ -1,6 +1,6 @@
 package com.example.msinscripcion.entity;
 
-import com.example.msinscripcion.dto.EventoDto;
+import com.example.msinscripcion.dto.EventDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,9 +12,9 @@ public class InscripcionDetalle {
     private Integer id;
     private Double precio;
     private Double cantidad;
-    private Integer EventoId;
+    private Integer EventId;
     @Transient
-    private EventoDto eventoDto;
+    private EventDto eventDto;
     public InscripcionDetalle() {
         this.precio = (double) 0;
         this.cantidad= (double) 0;

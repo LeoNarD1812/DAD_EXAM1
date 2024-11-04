@@ -2,12 +2,11 @@ package com.example.msinscripcion.controller;
 
 import com.example.msinscripcion.dto.ClientDto;
 import com.example.msinscripcion.dto.ErrorResponseDto;
-import com.example.msinscripcion.dto.EventoDto;
+import com.example.msinscripcion.dto.EventDto;
 import com.example.msinscripcion.entity.Inscripcion;
 import com.example.msinscripcion.entity.InscripcionDetalle;
 import com.example.msinscripcion.feign.ClientFeign;
-import com.example.msinscripcion.feign.EventoFeign;
-import com.example.msinscripcion.repository.InscripcionRepository;
+import com.example.msinscripcion.feign.EventFeign;
 import com.example.msinscripcion.service.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +24,7 @@ public class InscripcionController {
     @Autowired
     private ClientFeign clientFeign;
     @Autowired
-    private EventoFeign eventoFeign;
+    private EventFeign eventFeign;
 
     @GetMapping
     public ResponseEntity<List<Inscripcion>> getAll() {
@@ -46,16 +45,16 @@ public class InscripcionController {
             String errorMessage = "Error: Cliente no encontrado.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponseDto(errorMessage));
         }
-        for (InscripcionDetalle orderDetail : inscripcion.getInscripcionDetalles()) {
-            EventoDto eventoDto = eventoFeign.getById(orderDetail.getEventoId()).getBody();
+        for (InscripcionDetalle inscripcionDetalle : inscripcion.getInscripcionDetalles()) {
+            EventDto eventDto = eventFeign.getById(inscripcionDetalle.getEventId()).getBody();
 
-            if (eventoDto == null || eventoDto.getId() == null) {
-                String errorMessage = "Error: producto no encontrado.";
+            if (eventDto == null || eventDto.getId() == null) {
+                String errorMessage = "Error: Evento no encontrado.";
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponseDto(errorMessage));
             }
         }
-        Inscripcion newOrder = inscripcionService.save(inscripcion);
-        return ResponseEntity.ok(newOrder);
+        Inscripcion newInscripcion = inscripcionService.save(inscripcion);
+        return ResponseEntity.ok(newInscripcion);
     }
 
     @PutMapping("/{id}")

@@ -14,7 +14,7 @@ public class Cliente {
     private Integer id;
     private String name;
     private String document;
-    private String edad;
-    private String tipo;
+    private String age;
+    private String type;
 
 }
