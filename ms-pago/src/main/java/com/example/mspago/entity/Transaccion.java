@@ -9,8 +9,9 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "transacciones")
 public class Transaccion {
-@Id
+    @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private String number;

@@ -13,7 +13,7 @@ public interface EventFeign {
     @GetMapping("/{id}")
     @CircuitBreaker(name = "eventListByIdCB", fallbackMethod = "eventListById")
     public ResponseEntity<EventDto> getById(@PathVariable Integer id);
-    default ResponseEntity<EventDto> eventListById(Integer id, Exception e) {
+        default ResponseEntity<EventDto> eventListById(Integer id, Exception e) {
         return ResponseEntity.ok(new EventDto());
     }
 }

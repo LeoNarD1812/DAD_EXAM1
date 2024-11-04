@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TransaccionService {
-    public List<Transaccion> listar();
-    public Transaccion guardar(Transaccion pago);
-    public Transaccion actualizar(Transaccion pago);
-    public Optional<Transaccion> listarPorId(Integer id);
-    public void eliminar(Integer id);
+    public List<Transaccion> list();
+
+    public Transaccion save(Transaccion transaccion);
+
+    public Optional<Transaccion> findById(Integer id);
+
+    public void delete(Integer id);
+
+    public Transaccion update(Transaccion transaccion);
 }
