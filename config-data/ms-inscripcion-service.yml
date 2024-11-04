@@ -8,6 +8,8 @@ springdoc:
     enabled: true
     path: /doc/swagger-ui.html
 spring:
+  application:
+    name: ms-inscripcion-service
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
